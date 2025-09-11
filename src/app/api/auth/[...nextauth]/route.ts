@@ -1,12 +1,15 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { prisma } from "@/utils/db";
+import bcrypt from "bcryptjs";
 
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: process.env.GOOGLE_CLIENT_ID! as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET! as string,
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -16,36 +19,37 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
-        try {
-          const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-          if (!baseUrl) {
-            // Demo fallback: accept any password length >= 6
-            if (credentials.password.length >= 6) {
-              return { id: credentials.email, email: credentials.email } as any;
-            }
-            return null;
-          }
-          const resp = await fetch(`${baseUrl}/api/auth/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
+        });
+
+        if (!user) {
+          const created = await prisma.user.create({
+            data: {
+              email: credentials.email,
+              name: credentials.email.split("@")[0],
+              password: await bcrypt.hash(credentials.password, 10),
+            },
           });
-          if (!resp.ok) return null;
-          const user = await resp.json();
           return {
-            id: user.id?.toString?.() ?? user.id ?? credentials.email,
-            name: user.name ?? undefined,
-            email: user.email ?? credentials.email,
-          } as any;
-        } catch {
-          return null;
+            id: created.id,
+            email: created.email,
+            name: created.name ?? undefined,
+          };
         }
+
+        const isValid = user.password
+          ? await bcrypt.compare(credentials.password, user.password)
+          : false;
+        if (!isValid) return null;
+
+        return { id: user.id, email: user.email, name: user.name };
       },
     }),
   ],
-  session: { strategy: "jwt" },
-  pages: { signIn: "/login" },
-  debug: process.env.NODE_ENV !== "production",
+  adapter: PrismaAdapter(prisma),
+  pages: { signIn: "/auth/signin" },
   callbacks: {
     async jwt({ token, user }) {
       if (user) token.user = user;

@@ -15,7 +15,8 @@ export function useEmailPasswordLogin() {
       setIsLoading(true);
       const res = await signIn("credentials", { redirect: false, email, password });
       if (res?.error) {
-        message.error(res.error || "Invalid credentials");
+        console.log("Sign in error:", res.error);
+        message.error('User does not exist');
         return;
       }
       message.success("Signed in successfully");

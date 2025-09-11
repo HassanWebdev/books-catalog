@@ -1,0 +1,171 @@
+/* Custom Ant Design Button and Input Overrides */
+
+/* Primary Button Styles */
+.ant-btn.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6) !important;
+  border: 0 !important;
+  box-shadow: 0 10px 24px rgba(99, 102, 241, 0.35) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.ant-btn.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid:hover {
+  background: linear-gradient(90deg, #5855eb, #7c3aed) !important;
+  box-shadow: 0 15px 30px rgba(99, 102, 241, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
+.ant-btn.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid:active {
+  transform: translateY(0px) !important;
+}
+
+/* Default Button Styles */
+.ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined {
+  background: linear-gradient(90deg, #64748b, #6b7280) !important;
+  border: 0 !important;
+  box-shadow: 0 10px 24px rgba(100, 116, 139, 0.35) !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined:hover {
+  background: linear-gradient(90deg, #475569, #52525b) !important;
+  box-shadow: 0 15px 30px rgba(100, 116, 139, 0.45) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+}
+
+.ant-btn.ant-btn-default.ant-btn-color-default.ant-btn-variant-outlined:active {
+  transform: translateY(0px) !important;
+}
+
+/* Large Size Buttons */
+.ant-btn.ant-btn-lg {
+  height: auto !important;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+/* Round Shape Buttons */
+.ant-btn.ant-btn-round {
+  border-radius: 32px !important;
+}
+
+/* Link Button Danger Styles */
+.ant-btn.ant-btn-link.ant-btn-dangerous {
+  color: #ef4444 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.ant-btn.ant-btn-link.ant-btn-dangerous:hover {
+  color: #dc2626 !important;
+  background: #fef2f2 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Remove focus outline */
+.ant-btn:focus,
+.ant-btn:focus-visible {
+  outline: none !important;
+  box-shadow: 0 10px 24px rgba(99, 102, 241, 0.35) !important;
+}
+
+.ant-btn.ant-btn-default:focus,
+.ant-btn.ant-btn-default:focus-visible {
+  box-shadow: 0 10px 24px rgba(100, 116, 139, 0.35) !important;
+}
+
+/* Loading state */
+.ant-btn.ant-btn-loading {
+  opacity: 0.8 !important;
+  cursor: not-allowed !important;
+}
+
+/* Disabled state */
+.ant-btn:disabled,
+.ant-btn.ant-btn-disabled {
+  background: #f3f4f6 !important;
+  color: #9ca3af !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
+/* Custom Input Styles */
+.ant-input {
+  border: 2px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  font-size: 16px !important;
+  background: #ffffff !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+}
+
+.ant-input:hover {
+  border-color: #6366f1 !important;
+  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.1) !important;
+}
+
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), 0 4px 8px rgba(99, 102, 241, 0.1) !important;
+  outline: none !important;
+}
+
+.ant-input::placeholder {
+  color: #9ca3af !important;
+  font-style: italic !important;
+}
+
+/* Form Item Label Styles */
+.ant-form-item-label > label {
+  color: #374151 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  color: #ef4444 !important;
+}
+
+/* Form Item Margin */
+.ant-form-item {
+  margin-bottom: 20px !important;
+}
+
+/* Error States */
+.ant-form-item-has-error .ant-input {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.ant-form-item-has-error .ant-input:hover,
+.ant-form-item-has-error .ant-input:focus {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1), 0 4px 8px rgba(239, 68, 68, 0.1) !important;
+}
+
+.ant-form-item-explain-error {
+  color: #ef4444 !important;
+  font-size: 13px !important;
+  margin-top: 4px !important;
+}
+.ant-modal-confirm-btns {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}

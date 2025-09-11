@@ -8,7 +8,6 @@ export function useGoogleLogin() {
   const loginWithGoogle = useCallback(async () => {
     try {
       setIsLoading(true);
-      // Redirect back to the app root after successful auth
       await signIn("google", { callbackUrl: "/" });
     } finally {
       setIsLoading(false);
