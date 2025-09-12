@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Live demo
 
-https://books-catalog-1197.vercel.app/
+https://books-catalog-iota.vercel.app/
 
 ## Local setup
 
