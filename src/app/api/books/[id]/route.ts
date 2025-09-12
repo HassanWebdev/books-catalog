@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/utils/db";
-import { isUserAllowed } from "@/utils/helperFunction";
-import { responseTransformer } from "@/utils/helperFunction";
+import { isUserAllowed, responseTransformer } from "@/utils/helperFunction";
 
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    const { allowed, user, response } = await isUserAllowed();
-    if (!allowed) return response;
+    const { allowed, user, message } = await isUserAllowed();
+    if (!allowed || !user) return responseTransformer(message, false);
 
     if (!params.id) {
       return responseTransformer("Book ID is required", false);

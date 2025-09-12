@@ -1,17 +1,18 @@
 "use client";
 
 import { Button, Card, Table, Modal } from "antd";
-import { LogOut, Plus, Trash2 } from "lucide-react";
+import { Loader2, LogOut, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { useAuthRedirect } from "@/features/Dashboard/hooks/useAuthRedirect";
 import { useBooks } from "@/features/Dashboard/hooks/useBooks";
 import { useSignOut } from "@/features/Dashboard/hooks/useSignOut";
 import AddBookForm from "@/components/AddBookForm";
 import "@/styles/custom-antd.css";
+import { Loader } from "lucide-react";
 
 export default function DashboardPage() {
   const { session, status } = useAuthRedirect();
-  const { books, pagination, loading, addBook, deleteBook, setPage } =
+  const { books, pagination, loading, addBook, deleteBook, setPage,addBookLoading } =
     useBooks();
   const { handleSignOut } = useSignOut();
   const [showAddForm, setShowAddForm] = useState(false);
@@ -56,9 +57,7 @@ export default function DashboardPage() {
 
   if (status === "loading") {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        Loading...
-      </div>
+     <Loader2 className="animate-spin"/>
     );
   }
 
@@ -189,6 +188,7 @@ export default function DashboardPage() {
             open={showAddForm}
             onCancel={() => setShowAddForm(false)}
             onSubmit={addBook}
+            loading={addBookLoading}
           />
         </Modal>
       </div>

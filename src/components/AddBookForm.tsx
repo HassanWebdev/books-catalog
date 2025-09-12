@@ -14,9 +14,15 @@ interface AddBookFormProps {
   open: boolean;
   onCancel: () => void;
   onSubmit: (values: AddBookValues) => Promise<void> | void;
+  loading: boolean;
 }
 
-export function AddBookForm({ open, onCancel, onSubmit }: AddBookFormProps) {
+export function AddBookForm({
+  open,
+  onCancel,
+  onSubmit,
+  loading,
+}: AddBookFormProps) {
   const [form] = Form.useForm<AddBookValues>();
 
   useEffect(() => {
@@ -60,7 +66,7 @@ export function AddBookForm({ open, onCancel, onSubmit }: AddBookFormProps) {
       <Form.Item>
         <div className="flex gap-2 justify-end">
           <Button onClick={onCancel}>Cancel</Button>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={loading}>
             Add Book
           </Button>
         </div>

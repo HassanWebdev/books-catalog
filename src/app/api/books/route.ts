@@ -4,8 +4,8 @@ import { isUserAllowed, responseTransformer } from "@/utils/helperFunction";
 
 export async function GET(request: NextRequest) {
   try {
-    const { allowed, user, response } = await isUserAllowed();
-    if (!allowed) return response;
+    const { allowed, user, message } = await isUserAllowed();
+    if (!allowed || !user) return responseTransformer(message, false);
 
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page") || "1");
@@ -35,8 +35,8 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const { allowed, user, response } = await isUserAllowed();
-    if (!allowed) return response;
+    const { allowed, user, message } = await isUserAllowed();
+    if (!allowed || !user) return responseTransformer(message, false);
 
     const { title, author, genre } = await request.json();
 

@@ -33,6 +33,7 @@ export function useBooks() {
     totalPages: 0,
   });
   const [loading, setLoading] = useState(false);
+  const [addBookLoading, setAddBookLoading] = useState(false);
 
   const fetchBooks = useCallback(async () => {
     try {
@@ -62,11 +63,14 @@ export function useBooks() {
     genre: string;
   }) => {
     try {
+      setAddBookLoading(true);
       await axios.post("/api/books", values);
       message.success("Book added successfully");
       fetchBooks();
     } catch (error) {
       message.error("Failed to add book");
+    } finally {
+      setAddBookLoading(false);
     }
   };
 
@@ -97,5 +101,6 @@ export function useBooks() {
     addBook,
     deleteBook,
     setPage,
+    addBookLoading,
   };
 }
