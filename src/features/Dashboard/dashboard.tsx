@@ -75,7 +75,7 @@ export default function DashboardPage() {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 sm:mb-8 lg:mb-10 p-4 sm:p-6 lg:p-8 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl lg:rounded-2xl shadow-2xl border border-amber-200 gap-4 lg:gap-0">
           <div className="w-full lg:w-auto">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-900 mb-2" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
-              📚 Book Catalog
+              📚 Books Catalog
             </h1>
             <p className="text-lg sm:text-xl text-amber-700 font-medium">
               Welcome back, {session?.user?.name || session?.user?.email}

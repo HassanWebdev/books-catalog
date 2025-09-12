@@ -4,7 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
-  title: "Book Catalog",
+  title: "Books Catalog",
   description: "Personal book collection manager",
 };
 

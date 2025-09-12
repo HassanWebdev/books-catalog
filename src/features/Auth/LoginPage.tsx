@@ -104,6 +104,18 @@ export default function LoginPage() {
               padding: 20px !important;
             }
           }
+
+          .responsive-login-card .ant-input-affix-wrapper .ant-input,
+          .responsive-login-card .ant-input-password .ant-input {
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            outline: none !important;
+          }
+          .responsive-login-card .ant-input-affix-wrapper,
+          .responsive-login-card .ant-input-password {
+            box-shadow: none !important;
+          }
         `}</style>
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           <div style={{ textAlign: "center", marginBottom: 8 }}>
